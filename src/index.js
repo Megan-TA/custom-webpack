@@ -1,2 +1,9 @@
-var path = require('path')
-console.log(path.resolve(__dirname, '1111'))
+import 'css/styles.css'
+require('jquery')
+require('lib/test')
+
+window.onclick = function () {
+    require.ensure([], function (require) {
+        require('./ensure')
+    })
+}
