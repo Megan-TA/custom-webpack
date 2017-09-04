@@ -3,6 +3,7 @@ var path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -21,6 +22,17 @@ module.exports = {
                     fallback: 'style-loader',
                     use: 'css-loader'
                 })
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['es2015'],
+                        plugins: ['transform-object-rest-spread', 'transform-runtime']
+                    }
+                }
             }
         ]
     },
@@ -46,12 +58,24 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest']
         }),
+        new webpack.ProvidePlugin({
+            $: 'jquery'
+        }),
         new webpack.optimize.UglifyJsPlugin({
             output: {
                 comments: false
             },
             warning: false
         }),
-        new ExtractTextPlugin('styles.css')
+        new ExtractTextPlugin('styles.css'),
+        new CleanWebpackPlugin(
+            ['dist/*.*.js'],
+            {
+                root: __dirname,
+                verbose: false,
+                dry: false,
+                exclude: ['dist/vendor.*.js']
+            }
+        )
     ]
 }
