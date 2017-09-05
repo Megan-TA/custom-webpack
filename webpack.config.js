@@ -10,10 +10,6 @@ module.exports = {
         main: path.resolve(__dirname, 'src/index.js'),
         vendor: ['jquery']
     },
-    output: {
-        filename: '[name].[chunkhash].js',
-        path: path.resolve(__dirname, 'dist')
-    },
     module: {
         rules: [
             {
@@ -33,6 +29,30 @@ module.exports = {
                         plugins: ['transform-object-rest-spread', 'transform-runtime']
                     }
                 }
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
+            {
+                test: /\.(csv|tsv)$/,
+                use: [
+                    'csv-loader'
+                ]
+            },
+            {
+                test: /\.xml$/,
+                use: [
+                    'xml-loader'
+                ]
             }
         ]
     },
@@ -61,15 +81,9 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery'
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            output: {
-                comments: false
-            },
-            warning: false
-        }),
         new ExtractTextPlugin('styles.css'),
         new CleanWebpackPlugin(
-            ['dist/*.*.js'],
+            ['dist/*.bundle.js', 'dist/*.bundle.js.map', 'dist/chunk/*'],
             {
                 root: __dirname,
                 verbose: false,
@@ -77,5 +91,11 @@ module.exports = {
                 exclude: ['dist/vendor.*.js']
             }
         )
-    ]
+    ],
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        chunkFilename: 'chunk/[name].[chunkhash].js',
+        sourceMapFilename: '[file].map'
+    }
 }
