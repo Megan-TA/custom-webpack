@@ -16,6 +16,13 @@ module.exports = {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
+                    use: 'css-loader!stylus-loader'
+                })
+            },
+            {
+                test: /\.styl$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
                     use: 'css-loader'
                 })
             },
@@ -60,7 +67,8 @@ module.exports = {
         extensions: ['.js'],
         alias: {
             'lib': path.join(__dirname, '/src/lib'),
-            'css': path.join(__dirname, '/src/css')
+            'css': path.join(__dirname, '/src/css'),
+            'es6': path.join(__dirname, '/src/es6')
         }
     },
     plugins: [
