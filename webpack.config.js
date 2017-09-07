@@ -32,8 +32,10 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015'],
-                        plugins: ['transform-object-rest-spread', 'transform-runtime']
+                        presets: ['es2015', 'stage-1'],
+                        plugins: [
+                            'transform-runtime'
+                        ]
                     }
                 }
             },
