@@ -2,7 +2,7 @@
  * @Author: chen_huang 
  * @Date: 2017-09-05 21:36:56 
  * @Last Modified by: chen_huang
- * @Last Modified time: 2017-09-07 21:48:58
+ * @Last Modified time: 2017-09-11 00:32:36
  */
 import 'css/styles.css'
 // require('lib/test')
@@ -24,6 +24,16 @@ window.onload = function () {
         case 2:
             require.ensure([], function (require) {
                 require('es6/destructuring/destructuring.js')
+            })
+            break
+        case 3:
+            require.ensure([], function (require) {
+                require('es6/function/function.js')
+            })
+            break
+        case 4:
+            require.ensure([], function (require) {
+                require('es6/symbol/symbol.js')
             })
             break
         }
