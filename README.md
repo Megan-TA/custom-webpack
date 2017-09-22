@@ -1,5 +1,5 @@
 # custom-webpack
-personsal webpack2.0
+personsal webpack3.0
 
 * ## 代码分割 -- css
 
