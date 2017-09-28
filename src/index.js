@@ -2,11 +2,11 @@
  * @Author: chen_huang 
  * @Date: 2017-09-05 21:36:56 
  * @Last Modified by: chen_huang
- * @Last Modified time: 2017-09-11 00:32:36
+ * @Last Modified time: 2017-09-24 11:35:15
  */
 import 'css/styles.css'
 // require('lib/test')
-window.onload = function () { 
+window.onload = function () {
     $('#test').bind('click', function (event) {
         if (event.target.className != 'btn') return false
         let index = $(event.target.parentNode).index()
@@ -34,6 +34,16 @@ window.onload = function () {
         case 4:
             require.ensure([], function (require) {
                 require('es6/symbol/symbol.js')
+            })
+            break
+        case 5:
+            require.ensure([], function (require) {
+                require('es6/iterator/iterator.js')
+            })
+            break
+        case 6:
+            require.ensure([], function (require) {
+                require('es6/generator/generator.js')
             })
             break
         }
