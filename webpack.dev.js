@@ -4,7 +4,7 @@ const webpack = require('webpack')
 
 module.exports = merge(baseWebpackCfg, {
     // watch: true,
-    devtool: 'cheap-source-map',
+    devtool: '#source-map',
     devServer: {
         inline: true
     },

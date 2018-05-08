@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
     entry: {
+        jsx: path.resolve(__dirname, 'src/jsx/index.jsx'),
         main: path.resolve(__dirname, 'src/index.js'),
         vendor: ['jquery']
     },
@@ -27,16 +28,10 @@ module.exports = {
                 })
             },
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['es2015', 'stage-1'],
-                        plugins: [
-                            'transform-runtime'
-                        ]
-                    }
+                    loader: 'babel-loader'
                 }
             },
             {
@@ -66,11 +61,12 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.jsx'],
         alias: {
             'lib': path.join(__dirname, '/src/lib'),
             'css': path.join(__dirname, '/src/css'),
-            'es6': path.join(__dirname, '/src/es6')
+            'es6': path.join(__dirname, '/src/es6'),
+            'jsx': path.join(__dirname, '/src/jsx')
         }
     },
     plugins: [
