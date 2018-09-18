@@ -14,6 +14,13 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(ts|tsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'awesome-typescript-loader'
+                }
+            },
+            {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
@@ -61,12 +68,13 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
         alias: {
             'lib': path.join(__dirname, '/src/lib'),
             'css': path.join(__dirname, '/src/css'),
             'es6': path.join(__dirname, '/src/es6'),
-            'jsx': path.join(__dirname, '/src/jsx')
+            'jsx': path.join(__dirname, '/src/jsx'),
+            'ts': path.join(__dirname, '/src/ts')
         }
     },
     plugins: [
@@ -79,7 +87,7 @@ module.exports = {
             hash: false
         }),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify('development')
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest']

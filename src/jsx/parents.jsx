@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Child1 from './child1'
+import TS from 'ts/test'
 
 export default class Parents extends Component {
 
@@ -40,6 +41,7 @@ export default class Parents extends Component {
             <React.Fragment>
                 <p onClick = {this.testParents}>我是父组件</p>
                 <Child1 testChild1toParents = {this.testChild1toParents} {...this.state}/>
+                <TS />
             </React.Fragment> 
         )
     }

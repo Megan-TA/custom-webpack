@@ -6,7 +6,7 @@ module.exports = merge(baseWebpackCfg, {
     // watch: true,
     devtool: '#source-map',
     devServer: {
-        inline: true
+        inline: false
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
